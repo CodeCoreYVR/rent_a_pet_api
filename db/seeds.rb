@@ -57,3 +57,13 @@ Pet.create(
 )
 
 puts Cowsay.say("Generated #{Pet.count} pets.", :dragon)
+
+Review.create(
+  title: "Weakness: music",
+  rating: 3,
+  body: "Falls asleep if you play a bit of music, which is useful to know... if you're not the one who needs something guarded.",
+  pet_id: 1,
+  user_id: 2
+)
+
+puts Cowsay.say("Generated #{Review.count} reviews.", :frogs)
