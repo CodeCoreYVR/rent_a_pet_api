@@ -1,6 +1,7 @@
 class Api::V1::PetsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_pet, only: [:update, :show, :destroy]
+  before_action :authorize!, only: [:update, :destroy]
 
   def create
     pet = Pet.new pet_params
@@ -25,7 +26,7 @@ class Api::V1::PetsController < ApplicationController
       render json: { 
         id: @pet.id 
       }
-  else
+    else
       render(
         json: { 
           errors: @pet.errors 
@@ -69,5 +70,16 @@ class Api::V1::PetsController < ApplicationController
       :description,
       :is_available
     )
+  end
+
+  def authorize!
+    unless can?(:crud, @pet)
+      render(
+        json: { 
+          status: 401 
+        },
+        status: 401 #Not Authorized
+      )
+    end
   end
 end

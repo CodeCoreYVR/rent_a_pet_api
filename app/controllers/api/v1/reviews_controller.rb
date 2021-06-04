@@ -1,6 +1,7 @@
 class Api::V1::ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_review, except: [:create]
+  before_action :authorize!, only: [:update, :destroy]
     
   def create
     pet = Pet.find params[:pet_id]
@@ -58,5 +59,16 @@ class Api::V1::ReviewsController < ApplicationController
       :body, 
       :rating
     )
+  end
+
+  def authorize!
+    unless can?(:crud, @review)
+      render(
+        json: { 
+          status: 401 
+        },
+        status: 401 #Not Authorized
+      )
+    end
   end
 end
