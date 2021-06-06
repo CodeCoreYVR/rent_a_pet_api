@@ -32,7 +32,7 @@ puts Cowsay.say("Generated #{User.count} users.", :tux)
 Pet.create(
   name: "Fluffy",
   pet_type: "Cerberus",
-  image_url: "https://i.imgur.com/neAgqHx.jpg?fb",
+  image_url: "https://i.redd.it/3jj77rksd9gz.jpg",
   description: "Perfect guard dog for tiny red objects.",
   is_available: true,
   user_id: 1
@@ -42,7 +42,7 @@ Pet.create(
   name: "Norberta",
   pet_type: "Norwegian Ridgeback",
   image_url: "https://i.pinimg.com/originals/2b/fa/a3/2bfaa386e966038c43e204896f60497a.jpg",
-  description: "Not recommended for if you live in a wooden house.",
+  description: "Not recommended to rent if you live in a wooden house.",
   is_available: false,
   user_id: 1
 )
